@@ -7,6 +7,8 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.util.UUID;
+
 @Path("/users")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -32,6 +34,12 @@ public class UserController {
     @Transactional
     public Response createUser(UserEntity userEntity){
         return Response.ok(userService.createUser(userEntity)).build();
+    }
+
+    @GET
+    @Path("/{id}")
+    public Response createUser(@PathParam("id")UUID userId){
+        return Response.ok(userService.findById(userId)).build();
     }
 
 }
