@@ -19,6 +19,15 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GET
+    public Response findAll(@QueryParam("page") @DefaultValue("0") Integer page,
+                            @QueryParam("pagesize") @DefaultValue("10") Integer pagesize){
+
+        var users = userService.findAll(page,pagesize);
+        return Response.ok(users).build();
+
+    }
+
     @POST
     @Transactional
     public Response createUser(UserEntity userEntity){
