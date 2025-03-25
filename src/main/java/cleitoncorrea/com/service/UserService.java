@@ -22,6 +22,12 @@ public class UserService {
     public UserEntity findById(UUID userid){
 
         return (UserEntity) UserEntity.findByIdOptional(userid).orElseThrow(UserException::new);
+    }
 
+    public UserEntity updateUser(UUID userid, UserEntity userEntity){
+        var user = findById(userid);
+        user.username = userEntity.username;
+        UserEntity.persist(user);
+        return user;
     }
 }
