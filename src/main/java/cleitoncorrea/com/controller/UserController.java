@@ -43,10 +43,20 @@ public class UserController {
     }
 
     @PUT
-    @Path("/id")
+    @Path("/{id}")
     @Transactional
     public Response updateUser(@PathParam("id") UUID userId, UserEntity userEntity){
         return Response.ok(userService.updateUser(userId ,userEntity)).build();
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response deleteUser(@PathParam("id")UUID userId){
+        userService.deleteUserById(userId);
+        return Response.noContent().build() ;
+    }
+
+
 
 }

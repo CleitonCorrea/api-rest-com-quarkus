@@ -30,4 +30,10 @@ public class UserService {
         UserEntity.persist(user);
         return user;
     }
+
+    public void deleteUserById(UUID userid){
+        var user = findById(userid);
+        UserEntity.deleteById(user.userId);
+
+    }
 }
